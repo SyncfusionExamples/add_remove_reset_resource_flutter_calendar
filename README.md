@@ -6,55 +6,11 @@ In the Flutter event calendar, you can dynamically insert, remove, and reset the
 
 ## Add, remove and updating the resources in the calendar
 
-By using the button click, you can use the insert(), remove(), and clear() methods to add, delete, and reset resources to the resource collection. You can also use the notifyListeners to notify the calendar UI of any changes.
+Create a resource view by using the displayName, color, id, and image properties of the CalendarResource and add the resources to the appointment, by using the resources property of the CalendarDataSource. Then you can use the resourceID property from Appointment to assign appointments to the resources.
 
-```
-
-TextButton(child: const Text('Insert resource'),onPressed: ()
-{
-final CalendarResource resource = CalendarResource(
-displayName: 'Sophia',
-color: Colors.red,
-id: '0004',
-);
-_employeeCollection.insert(2, resource);
-_events!.notifyListeners(
-CalendarDataSourceAction.addResource,
-<CalendarResource>[resource]);
-
-},),
-
-TextButton(child: const Text('Remove resource'),onPressed: ()
-{
-final CalendarResource resource = _employeeCollection[0];
-_employeeCollection.remove(resource);
-_events!.notifyListeners(
-CalendarDataSourceAction.removeResource,
-<CalendarResource>[resource]);
-
-},),
-TextButton(child: const Text('Reset resource'),onPressed: ()
-{
-_employeeCollection = <CalendarResource>[];
-_events!.resources!.clear();
-_employeeCollection.add(CalendarResource(
-displayName: "Sophia",
-id: '0004',
-color: Colors.green
-
-));
-
-_events!.resources!.addAll(_employeeCollection);
-_events!.notifyListeners(
-CalendarDataSourceAction.resetResource,
-_employeeCollection);
-
-},),
-
-```
+In this sample using the button click, you can use the insert(), remove(), and clear() methods to add, delete, and reset resources to the resource collection. You can also use the notifyListeners to notify the calendar UI of any changes.
 
 You can also refer our UG documentation to know more about [Resource](https://help.syncfusion.com/flutter/calendar/resource-view) support in the Flutter calendar.
-
 
 ## Requirements to run the demo
 * [VS Code](https://code.visualstudio.com/download)
